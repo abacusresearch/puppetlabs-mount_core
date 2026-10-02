@@ -294,9 +294,9 @@ Puppet::Type.type(:mount).provide(
     end
     mount_output.each do |line|
       if (match = regex.match(line)) && (name = match.captures.first)
-        instances << { name:, mounted: :yes } # Only :name is important here
+        instances << { name: name, mounted: :yes } # Only :name is important here
       else
-        raise Puppet::Error, _('Could not understand line %{line} from mount output') % ({ line: })
+        raise Puppet::Error, _('Could not understand line %{line} from mount output') % ({ line: line })
       end
     end
     instances
